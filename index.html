@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#17274c"><title>What Remains of Me · A Paper Lantern Story</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="content.js"></script><script defer src="engine.js"></script><script defer src="game.js"></script>
+</head>
+<body>
+<main id="app">
+  <header class="topbar">
+    <div class="brand">What Remains of Me <span data-text="subtitle"></span></div>
+    <nav><button id="language" aria-label="Switch language">中文</button><button id="restart" data-text="restart"></button></nav>
+  </header>
+  <section id="game" aria-label="What Remains of Me game">
+    <div class="hud" id="hud" hidden>
+      <div class="memory-slots"><span class="eyebrow" data-text="memories"></span><button id="slot-album" class="memory-slot" aria-label="Family album">01</button><button id="slot-polaroid" class="memory-slot" aria-label="Polaroid">02</button><button id="slot-hidden" class="memory-slot" aria-label="Optional hidden memory">???</button></div>
+      <div class="progress-wrap"><span data-text="repair"></span><strong id="progress-text">0%</strong><progress id="progress" max="100" value="0" aria-label="Lantern restoration"></progress></div>
+    </div>
+    <div id="stage" class="stage" data-phase="loading">
+      <div id="room" hidden>
+        <img class="room-bg" src="assets/v2/BG01_old_house.PNG" alt="Great-aunt's old house" draggable="false">
+        <button class="hotspot cabinet" id="cabinet" aria-label="Cabinet"><span data-text="cabinet"></span></button>
+        <button class="hotspot bookshelf" id="bookshelf" aria-label="Bookshelf"><span data-text="shelf"></span></button>
+        <button class="hotspot altar" id="altar" aria-label="Ancestral altar"><span data-text="altar"></span></button>
+        <button class="hotspot portrait" id="portrait" aria-label="Portrait"><span data-text="portrait"></span></button>
+        <div id="descendant" class="descendant"><div class="aura"></div><img id="pose" alt="Yellow descendant" draggable="false"></div>
+        <button id="ghost" class="ghost character-button" aria-label="Talk to Ghost" hidden><img data-asset="ghost" alt="Deep blue Ghost" draggable="false"></button>
+        <div id="ancestor" class="ancestor" hidden><img id="ancestor-pose" data-asset="ancestor" alt="Great-aunt"><img id="staff-reveal" data-asset="staff" alt="" aria-hidden="true"></div>
+        <div id="room-smoke" class="smoke" hidden><i></i><i></i><i></i></div>
+        <button id="lantern" class="lantern character-button" aria-label="Repair paper lantern"><img id="lantern-image" alt="Paper lantern"><i class="memory-light green" hidden></i><i class="memory-light pink" hidden></i></button>
+      </div>
+      <div id="intro" class="intro-screen" hidden>
+        <div class="intro-head"><span class="eyebrow">INTERACTIVE PAPER-CUT STORY</span><h1>What Remains of Me</h1></div>
+        <div class="intro-columns"><article class="intro-card"><h2 data-text="introStoryTitle"></h2><p data-text="introStory"></p><p class="intro-question" data-text="introQuestion"></p></article><article class="intro-card"><h2 data-text="introCultureTitle"></h2><p data-text="introCulture"></p></article></div>
+        <div class="intro-actions"><button id="intro-start" data-text="beginStory"></button></div>
+      </div>
+      <div id="opening" class="opening" hidden>
+        <div class="outside-door" aria-hidden="true"></div>
+        <div class="opening-title"><span class="eyebrow" data-text="outside"></span><h1>What Remains of Me</h1><p data-text="subtitle"></p></div>
+        <div class="opening-character"><img data-asset="carrying" alt="Descendant carrying a lantern"><img class="broken-overlay" data-asset="broken" alt="Broken lantern"></div>
+      </div>
+      <div id="projection" class="projection" hidden><div class="beam"></div><div id="projection-art" class="projection-art"></div><div class="projection-caption"><span id="projection-number" class="eyebrow"></span><p id="projection-line"></p><button id="projection-next" data-text="next"></button></div><img class="projector" data-asset="light" alt="Lit lantern"></div>
+      <div id="ending" class="ending" hidden><span id="ending-label" class="eyebrow"></span><div class="incomplete-circle" aria-hidden="true"><i></i><b></b></div><h2 data-text="final"></h2><p data-text="finalSub"></p><button id="play-again" data-text="playAgain"></button><small data-text="research"></small></div>
+      <div id="loading" class="loading"><span id="loading-message" data-text="loading"></span><button id="retry" data-text="retry" hidden></button></div>
+      <div id="reward-light" class="reward-light" hidden></div>
+    </div>
+    <div id="objective" class="objective" aria-live="polite"></div>
+    <section id="inventory" class="inventory" aria-label="Found objects" hidden><div class="bag-label" data-text="bag"></div><div id="inventory-items"></div></section>
+    <div id="dialogue" class="dialogue" role="dialog" aria-modal="false" aria-labelledby="dialogue-speaker" hidden><div class="dialogue-inner"><div class="dialogue-characters"><img id="dialogue-portrait" alt="Speaker"><img id="dialogue-companion" alt="Companion" hidden></div><div class="dialogue-copy"><span id="dialogue-speaker" class="eyebrow"></span><p id="dialogue-line"></p><img id="dialogue-art" class="dialogue-memory-art" alt="Memory detail" hidden><button id="dialogue-next" data-text="next"></button></div></div></div>
+  </section>
+  <footer><span>What Remains of Me / Interactive story</span><span>Artwork: FutureMe_Game</span></footer>
+</main>
+
+<dialog id="panel" aria-labelledby="panel-title"><div class="panel-heading"><h2 id="panel-title"></h2><button id="panel-close" aria-label="Back to room">×</button></div><div id="panel-content"></div><div id="panel-items" class="panel-items"></div><p id="panel-status" role="status"></p></dialog>
+<div id="toast" class="toast" role="status" hidden></div><div id="idle-hint" class="idle-hint" hidden><span class="hint-ring"></span><span class="hint-label" data-text="idleHint"></span></div>
+</body>
+</html>
